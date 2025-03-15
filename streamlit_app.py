@@ -30,7 +30,7 @@ st.dataframe(sales_by_month)
 st.line_chart(sales_by_month, y="Sales")
 
 # ---------------- NEW FEATURES FOR THE ASSIGNMENT ----------------
-st.write("## Your additions")
+st.write("## Additions")
 
 # (1) Add a drop-down for Category
 category_selected = st.selectbox("Select a Category", df["Category"].unique())
