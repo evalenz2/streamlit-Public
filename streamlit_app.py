@@ -43,14 +43,9 @@ subcategories_selected = st.multiselect("Select Sub-Categories", subcategories, 
 filtered_df = df[(df["Category"] == category_selected) & (df["Sub_Category"].isin(subcategories_selected))]
 
 # (3) Show a line chart of sales for the selected Sub-Categories
-sales_by_subcat_date = (
-    filtered_df.groupby(["Order_Date", "Sub_Category"])["Sales"]
-    .sum()
-    .unstack()
-    .fillna(0)
-)
-st.line_chart(sales_by_subcat_date)
-
+# Resample by month instead of grouping by exact date
+sales_by_date = filtered_df["Sales"].resample("M").sum()
+st.line_chart(sales_by_date)
 
 # (4) Show three metrics: Total Sales, Total Profit, and Overall Profit Margin (%)
 total_sales = filtered_df["Sales"].sum()
